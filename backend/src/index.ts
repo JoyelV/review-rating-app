@@ -17,10 +17,19 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5174';
+const allowedOrigins = (process.env.ALLOWED_ORIGIN || 'http://localhost:5174')
+  .split(',')
+  .map(o => o.trim());
 
 app.use(cors({
-  origin: allowedOrigin,
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g. curl, mobile apps, Render health checks)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS: origin ${origin} not allowed`));
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
