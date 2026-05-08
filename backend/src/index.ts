@@ -16,36 +16,27 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
-// Middleware
-const allowedOrigins = (
-  process.env.ALLOWED_ORIGIN ||
-  'http://localhost:5174,https://review-rating-app-eta.vercel.app'
-)
-  .split(',')
-  .map(o => o.trim());
-
+// CORS — must come before everything else
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (e.g. curl, mobile apps, Render health checks)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error(`CORS: origin ${origin} not allowed`));
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
 }));
-app.use(helmet());
-app.use(express.json());
 
+// Handle preflight OPTIONS for all routes
+app.options('*', cors());
+
+// Helmet — disable crossOriginResourcePolicy so it doesn't strip CORS headers
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
+app.use(express.json());
 
 // Rate Limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again after 15 minutes'
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: 'Too many requests from this IP, please try again after 15 minutes',
 });
 app.use('/api/', limiter);
 
@@ -53,6 +44,7 @@ app.use('/api/', limiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/companies', companyRoutes);
 app.use('/api/reviews', reviewRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('ReviewRate API is running...');
