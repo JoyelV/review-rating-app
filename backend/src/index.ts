@@ -17,7 +17,10 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-const allowedOrigins = (process.env.ALLOWED_ORIGIN || 'http://localhost:5174')
+const allowedOrigins = (
+  process.env.ALLOWED_ORIGIN ||
+  'http://localhost:5174,https://review-rating-app-eta.vercel.app'
+)
   .split(',')
   .map(o => o.trim());
 
