@@ -15,7 +15,10 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, JWT_SECRET as string) as any;
+    if (!token) {
+      return res.status(401).json({ message: 'Token missing' });
+    }
+    const decoded = jwt.verify(token, String(JWT_SECRET)) as any;
     
     req.userId = decoded.userId;
 
