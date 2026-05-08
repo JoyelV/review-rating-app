@@ -1,0 +1,39 @@
+:root {
+  --primary-purple: #D100F3;
+  --btn-gradient: linear-gradient(136.93deg, #D100F3 9.08%, #002BC5 108.36%);
+  --bg-light: #f8f9fc;
+  --text-dark: #1f2937;
+  --text-muted: #9ca3af;
+  --border-color: #e5e7eb;
+  --star-yellow: #fbbf24;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+}
+
+/* Reusable Button Style */
+.btn-primary,
+.btn-submit {
+  background: var(--btn-gradient);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-submit:hover {
+  opacity: 0.9;
+}

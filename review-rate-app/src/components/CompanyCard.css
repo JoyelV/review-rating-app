@@ -1,0 +1,154 @@
+.company-card {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    padding: 23px 22px; /* Approx padding to get 142px height with 95px logo */
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    gap: 29px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+
+.company-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.15);
+}
+
+.company-logo {
+    width: 95px;
+    height: 95px;
+    flex-shrink: 0;
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px; /* Or 50% if they were ellipses? Figma says Mask group / Ellipse 2 */
+}
+
+/* Figma says "Ellipse 2", so it's circular */
+.logo-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #0b1536;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.company-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Approx spacing */
+}
+
+.company-info h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #767676;
+    margin: 0;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.rating {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.reviews-count {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.company-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 95px; /* Match logo height to keep alignment */
+}
+
+.founded-date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #767676;
+}
+
+.btn-dark {
+    background: #303030;
+    color: #FFFFFF;
+    border: none;
+    width: 146px;
+    height: 37px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-dark:hover {
+    background: #1f1f1f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .company-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    
+    .company-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .company-actions {
+        height: auto;
+        width: 100%;
+        align-items: flex-start;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .btn-dark {
+        width: 100%;
+    }
+}

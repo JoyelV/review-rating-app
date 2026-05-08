@@ -1,0 +1,249 @@
+/* src/components/Modals/Modal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 530px;
+    border-radius: 25px;
+    padding: 73px 24px 40px; /* Adjusted side padding to 24px to make inner inputs exactly 482px */
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* To clip the circles */
+}
+
+/* Background circles from Figma */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    left: -34px;
+    top: -4px;
+    background: linear-gradient(136.93deg, #D100F3 9.08%, #002BC5 108.36%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.modal-content::after {
+    content: '';
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    left: 28px;
+    top: -55px;
+    background: linear-gradient(136.93deg, #D100F3 9.08%, #002BC5 108.36%);
+    opacity: 0.25;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 21px;
+    right: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+    z-index: 10;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin: 0 0 23px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Figma spacing approx */
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #959595;
+    font-weight: 400;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    height: 37px;
+    padding: 8px 15px;
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    color: #000000;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #D100F3;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #D5D5D5;
+}
+
+/* Hide native date picker icon but keep it clickable over the whole input */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.form-group textarea {
+    resize: none;
+    height: 100px;
+    padding: 12px 15px;
+}
+
+/* Handling the inputs that have icons */
+.form-group .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-group .input-with-icon input {
+    padding-right: 40px;
+}
+
+.form-group .input-with-icon svg {
+    position: absolute;
+    right: 15px;
+    color: #767676;
+    pointer-events: none; /* Let clicks pass through to the input/picker */
+}
+
+
+/* Rating section specifically for the Add Review Modal */
+.rating-input-group {
+    margin-top: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+
+.rating-label {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.rating-stars-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.interactive-stars {
+    display: flex;
+    gap: 12px;
+}
+
+.interactive-stars svg {
+    transition: transform 0.1s ease;
+}
+
+.interactive-stars svg:hover {
+    transform: scale(1.1);
+}
+
+.rating-status {
+    font-size: 14px;
+    color: #6B6B6B;
+}
+
+.center-btn {
+    align-self: center;
+    width: 101px;
+    height: 37px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.modal-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 20px;
+}
+
+.modal-footer span {
+    color: #D100F3;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+
+    .modal-content {
+        width: 90%;
+        padding: 50px 20px 30px;
+    }
+    
+    .rating-stars-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

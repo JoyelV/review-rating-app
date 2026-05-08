@@ -1,0 +1,153 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 80px; /* Figma has 80px left margin for logo, but we use padding */
+    background-color: #ffffff;
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 75px; /* From Figma */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.logo-icon {
+    background: linear-gradient(136.93deg, #D100F3 9.08%, #002BC5 108.36%);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.logo-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #484848;
+}
+
+.navbar-search {
+    position: relative;
+    width: 384px; /* From Figma */
+}
+
+.navbar-search input {
+    width: 100%;
+    height: 37px; /* From Figma */
+    padding: 10px 45px 10px 15px; /* Adjust padding for right icon */
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #000;
+}
+
+.navbar-search input::placeholder {
+    color: #777777;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777777;
+}
+
+.navbar-actions {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.profile-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #F3E8FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-logout {
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.btn-logout:hover {
+    color: #D100F3;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.btn-text:hover {
+    color: var(--primary-purple);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 15px 40px;
+    }
+    .navbar-search {
+        width: 300px;
+    }
+    .navbar-actions {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 15px;
+    }
+    .navbar-search {
+        width: 100%;
+        order: 3; /* Move to next row */
+    }
+    .navbar-actions {
+        gap: 20px;
+    }
+}
