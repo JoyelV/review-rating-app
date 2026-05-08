@@ -10,11 +10,12 @@ const companyRepository = new CompanyRepository();
 
 export const getReviewsByCompany = async (req: Request, res: Response) => {
   try {
-    const { companyId } = req.params;
+    const companyId = req.params.companyId as string;
     if (!mongoose.Types.ObjectId.isValid(companyId)) {
       return res.status(400).json({ message: 'Invalid company ID' });
     }
     const reviews = await reviewRepository.findByCompanyId(companyId);
+
     res.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
@@ -40,8 +41,11 @@ export const createReview = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Invalid company ID format' });
     }
 
+    const companyIdStr = companyId as string;
+
     // Verify Company Exists
-    const company = await companyRepository.findById(companyId);
+    const company = await companyRepository.findById(companyIdStr);
+
     if (!company) {
       return res.status(404).json({ message: 'Target company not found' });
     }

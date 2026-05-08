@@ -52,7 +52,7 @@ const seedData = async () => {
       }
     ];
 
-    const createdCompanies = await Company.insertMany(companies);
+    const createdCompanies: any = await Company.insertMany(companies);
 
     const reviews = [
       {
@@ -101,6 +101,7 @@ const seedData = async () => {
         time: '11:00'
       }
     ];
+
 
     await Review.insertMany(reviews);
 

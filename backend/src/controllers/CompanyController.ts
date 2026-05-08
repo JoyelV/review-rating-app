@@ -20,8 +20,9 @@ export const getCompanies = async (req: Request, res: Response) => {
 
 export const getCompanyById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const company = await companyRepository.findById(id);
+
     if (!company) {
       return res.status(404).json({ message: 'Company not found' });
     }
