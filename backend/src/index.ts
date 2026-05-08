@@ -23,9 +23,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Handle preflight OPTIONS for all routes
-app.options('*', cors());
-
 // Helmet — disable crossOriginResourcePolicy so it doesn't strip CORS headers
 app.use(helmet({
   crossOriginResourcePolicy: false,
